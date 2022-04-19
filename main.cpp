@@ -12,5 +12,3 @@ int main()
     cin >> n;
     cout << n << endl;
 }
-
-
