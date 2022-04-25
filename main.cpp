@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <stdio.h>
+#include <stdio.h> //not sure what stdio is doing. This is the equivalent to iostream, but it is a C library. Didn't want to delete in case there was a reason for it that I don't see
 #include <vector>
 
 using namespace std;
@@ -53,6 +53,7 @@ int main()
         cout << "Exiting program..." << endl;
         exit(1);
     }
+    
     else
     {
         cout << "Invalid input. Please try again." << endl;
