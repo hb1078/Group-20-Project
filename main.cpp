@@ -1,10 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <stdio.h> //not sure what stdio is doing. This is the equivalent to iostream, but it is a C library. Didn't want to delete in case there was a reason for it that I don't see
 #include <vector>
 
 #include "accounts.h"
+//#include "accounts.cpp"
 
 
 using namespace std;
@@ -16,16 +16,16 @@ int main()
     int login_option;
 
     string line;
-    string fullnametemp;
-    string passwordtemp;
-    string shippinginfotemp;
-    string paymentinfotemp;
+    string fullname;
+    string password;
+    string shippinginfo;
+    string paymentinfo;
 
     string accountsfile;
     string itemsfile;
 
     vector<accounts> account_vector;
-    //vector<items> item_vector; MUST BE ADDED EVENTUALLY
+    //vector<books> books_vector; MUST BE ADDED EVENTUALLY
 
 
     fstream file1;
@@ -77,18 +77,18 @@ int main()
     {
         cout << "---User Login---" << endl << endl;
         cout << "Please enter the name you registered with: ";
-        getline(cin >> ws, fullnametemp);
+        getline(cin >> ws, fullname);
 
         for(int i = 0; i < account_vector.size(); i++) {          
                   //THIS IS GOING TO BE A MASSIVE FOR-LOOP (it'll be the entire login menu)
-            if(fullnametemp == account_vector[i].getFullName()) {
+            if(fullname == account_vector[i].getFullName()) {
 
                 cout << "Please enter your password: ";
-                getline(cin, passwordtemp);
+                getline(cin, password);
 
-                if(passwordtemp == account_vector[i].getPassword()) {
+                if(password == account_vector[i].getPassword()) {
 
-                    cout << "Welcome " << fullnametemp << "!" << endl;
+                    cout << "Welcome " << fullname << "!" << endl;
                     cout << "Please select from the following options:" << endl << endl;
 
                     cout << "1. View Shop" << endl;
@@ -108,18 +108,18 @@ int main()
         cout << "--- User Account Creation --- " << endl << endl;
 
         cout << "Please enter your first and last name: " << endl;
-        getline(cin >> ws, fullnametemp);
+        getline(cin >> ws, fullname);
 
         cout << "Please enter your password: " << endl;
-        getline(cin, passwordtemp);
+        getline(cin, password);
 
         cout << "Please enter your shipping address: " << endl;
-        getline(cin, shippinginfotemp);
+        getline(cin, shippinginfo);
 
         cout << "Please enter your card number:" << endl;
-        getline(cin, paymentinfotemp);
+        getline(cin, paymentinfo);
 
-        accounts newaccount(fullnametemp, passwordtemp, shippinginfotemp, paymentinfotemp);
+        accounts newaccount(fullname, password, shippinginfo, paymentinfo);
         account_vector.push_back(newaccount);
 
         cout << "Account created successfully!" << endl;

@@ -1,7 +1,7 @@
 #include "accounts.h"
 #include <iostream>
 
-using namespace std;
+//using namespace std;
 
 void accounts::setFullName(string fullname)
 {
