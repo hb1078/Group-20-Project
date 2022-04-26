@@ -1,4 +1,4 @@
-#include "book.h" //this comment is testing if I have this branch set up correctly
+#include "book.h"
 
 book::~book()
 {
