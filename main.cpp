@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <iterator>
 
 #include "accounts.h"
 //#include "accounts.cpp"
@@ -22,7 +23,7 @@ int main()
     string paymentinfo;
 
     string accountsfile;
-    string itemsfile;
+    string booksfile;
 
     vector<accounts> account_vector;
     //vector<books> books_vector; MUST BE ADDED EVENTUALLY
@@ -32,7 +33,7 @@ int main()
     fstream file2;
 
     accountsfile = "accounts.txt";
-    itemsfile = "items.txt";
+    booksfile = "books.txt";
 
     file1.open(accountsfile);
 
@@ -40,16 +41,16 @@ int main()
     if(file1.is_open()){
         while(getline(file1, line)){
             accounts fileaccount;
-            fileaccount.setFullName(line);
+            fileaccount.accounts::setFullName(line);
 
             getline(file1, line);
-            fileaccount.setPassword(line);
+            fileaccount.accounts::setPassword(line);
 
             getline(file1, line);
-            fileaccount.setShippingInfo(line);
+            fileaccount.accounts::setShippingInfo(line);
 
             getline(file1, line);
-            fileaccount.setPaymentInfo(line);
+            fileaccount.accounts::setPaymentInfo(line);
 
             account_vector.push_back(fileaccount);
         }
@@ -62,6 +63,9 @@ int main()
     }
 
     //main menu
+
+    while(1)
+    {
     cout << "Welcome to the Group 20 Bookstore!" << endl;
     cout << "Please select from the following options:" << endl << endl;
 
@@ -79,14 +83,14 @@ int main()
         cout << "Please enter the name you registered with: ";
         getline(cin >> ws, fullname);
 
-        for(int i = 0; i < account_vector.size(); i++) {          
-                  //THIS IS GOING TO BE A MASSIVE FOR-LOOP (it'll be the entire login menu)
-            if(fullname == account_vector[i].getFullName()) {
+        for(int i = 0; i < account_vector.size(); i++) {          //THIS IS GOING TO BE A MASSIVE FOR-LOOP (it'll be the entire login menu)
+        
+            if(fullname == account_vector[i].accounts::getFullName()) {
 
                 cout << "Please enter your password: ";
                 getline(cin, password);
 
-                if(password == account_vector[i].getPassword()) {
+                if(password == account_vector[i].accounts::getPassword()) {
 
                     cout << "Welcome " << fullname << "!" << endl;
                     cout << "Please select from the following options:" << endl << endl;
@@ -123,6 +127,22 @@ int main()
         account_vector.push_back(newaccount);
 
         cout << "Account created successfully!" << endl;
+        cout << "built correctly as well" << endl;
+
+            //write to accounts.txt
+        ofstream accounts_file_write;
+        accounts_file_write.open("accounts.txt");
+        for(int i = 0; i < account_vector.size(); i++) {
+            accounts_file_write << account_vector[i].accounts::getFullName() << endl;
+            accounts_file_write << account_vector[i].accounts::getPassword() << endl;
+            accounts_file_write << account_vector[i].accounts::getShippingInfo() << endl;
+            accounts_file_write << account_vector[i].accounts::getPaymentInfo() << endl;
+
+
+            
+
+    }
+    accounts_file_write.close();
 
     }
 
@@ -138,4 +158,7 @@ int main()
         cout << "Invalid input. Please try again." << endl;
         //main();
     }
+
+    }
+
 }
