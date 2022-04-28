@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include <iterator>
-
+#include "book.h"
 #include "accounts.h"
 //#include "accounts.cpp"
 
@@ -26,7 +26,7 @@ int main()
     string booksfile;
 
     vector<accounts> account_vector;
-    //vector<books> books_vector; MUST BE ADDED EVENTUALLY
+    vector<book> books_vector;
 
 
     fstream file1;
