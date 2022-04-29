@@ -12,4 +12,4 @@ Notes:
 
     2. Must decide how to parse files for information (and how to output certain data to files (ie. account history))
 
-    3. 
+    3.  I uploaded cart.h/cart.cpp for help and documenation purposes ~ethan

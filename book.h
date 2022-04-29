@@ -1,4 +1,4 @@
-#pragma once
+#pragma once //All functions of this this class, including constructors, have been tested and seem to work as expected
 
 #include <string>
 
