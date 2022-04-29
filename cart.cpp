@@ -1,5 +1,7 @@
 #include "cart.h> 
 #include <iostream>
+#include <string>
+
 
 using namespace std;
 
@@ -33,9 +35,32 @@ void cart::addBook(Book book) //going by design doc
 ;
 }
 
-void cart::removeBook(Book book)
+void cart::removeBook()
 {
     ;
 }
 
-void
+void cart::viewCart()
+{
+return cart;
+}
+
+void cart::clearCart()
+{;}
+
+void cart::viewTotal()
+{;}
+
+void cart::checkout()
+{
+return checkout;
+}
+
+void cart::addHistory()
+{;}
+
+void cart::viewHistory()
+{;}
+
+void cart::deleteHistory()
+{;}
