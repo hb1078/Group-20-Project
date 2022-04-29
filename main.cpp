@@ -243,15 +243,7 @@ int main()
         account_vector.push_back(newaccount);
 
         cout << "Account created successfully!" << endl << "Please wait..." << endl << endl;
-        
-
-
-
-
-            
-
-    
-
+ 
 
     }
 
