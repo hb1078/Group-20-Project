@@ -7,9 +7,9 @@ Members:
 
 
 
-Notes:
-    1. The Customer class mentioned in the Design Document is now the Accounts class. 
+ISSUES AS OF 4/29/22:
 
-    2. Must decide how to parse files for information (and how to output certain data to files (ie. account history))
-
-    3.  I uploaded cart.h/cart.cpp for help and documenation purposes ~ethan
+1. in shop catalog, quantity and price are 0 for everything. 
+2. many if statements will bug out if wrong input is inputted, so that needs to be fixed.
+3. trying to checkout 0 items will result in a segmentation fault
+4. 

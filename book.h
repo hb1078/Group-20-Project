@@ -1,29 +1,80 @@
-#pragma once //All functions of this this class, including constructors, have been tested and seem to work as expected
+#pragma once 
+//All functions of this this class, including constructors, have been tested and seem to work as expected
 
 #include <string>
+#include <iostream>
 
 using std::string;
+using std::endl;
+using std::cout;
 
 class book
 {
-    private:
-    string bookName;
+    public:
+    string bookname;
     double price;
     int quantity;
 
-    public:
-    book() : bookName(""), price(0.0), quantity(0) {}
-    book(string nameIn, double priceIn) : bookName(nameIn), price(priceIn), quantity(0) {}
-    book(string nameIn, double priceIn, int quantityIn) : bookName(nameIn), price(priceIn), quantity(quantityIn) {}
+    book() : bookname(""), price(0.0), quantity(0) {}
+    book(string bookname, double price) : bookname(bookname), price(price), quantity(0) {}
+    book(string bookname, double price, int quantity) : bookname(bookname), price(price), quantity(quantity) {}
     ~book();
 
-    void setName(const string& nameIn); //string passed as const reference because it is a class
-    void setPrice(double priceIn);
-    void setQuantity(int quantityIn);
+    void setName(string bookname); 
+    void setPrice(double price);
+    void setQuantity(int quantity);
 
-    const string getName(); //const better here because it doesn't modify values
-    const double getPrice();
-    const int getQuantity();
+    string getName(); 
+    double getPrice();
+    int getQuantity();
+    void viewBook();
 
-    bool decreaseQuantity(int amount); //decided this should be bool so it can fail if it causes quantity to be negative
+    void decreaseQuantity(int amount);
 };
+
+
+book::~book()
+{
+    bookname = ""; //I have decided to not use this pointers, as they are redundant as long as variable names are unique
+    price = 0.0;
+    quantity = 0;
+}
+
+void book::setName(string bookname) //all of my parameters are "somethingIn" or "somethingOut" to prevent accidental creation of duplicate variable names
+{
+    this->bookname = bookname;
+}
+
+void book::setPrice(double price)
+{
+    this->price = price;
+}
+
+void book::setQuantity(int quantity)
+{
+    this->quantity = quantity;
+}
+
+string book::getName()
+{
+    return bookname;
+}
+
+double book::getPrice()
+{
+    return price;
+}
+
+int book::getQuantity()
+{
+    return quantity;
+}
+
+void book::viewBook(){
+    cout << " Name: " << bookname << endl << "Quantity: " << quantity << endl << "Price: " << price << endl << endl;
+}
+
+void book::decreaseQuantity(int amount) //does as specified in the design document
+{
+    this->quantity-=quantity;
+}

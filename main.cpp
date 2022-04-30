@@ -6,6 +6,7 @@
 #include "book.h"
 #include "accounts.h"
 #include "cart.h"
+
 //#include "accounts.cpp"
 //#include "cart.h"
 //#include "inventory.h"
@@ -18,7 +19,11 @@ int main()
     int user_input;
     int login_option;
     int account_option;
+    int shop_option;
+    int cart_size;
     int looper = 1;
+    int quantity = 0;
+    double price = 0.0;
 
     string line;
     string fullname;
@@ -34,7 +39,8 @@ int main()
     string booksfile;
 
     vector<accounts> account_vector;
-    //vector<books> books_vector; MUST BE ADDED EVENTUALLY
+    vector<book> books_vector;
+    cart carts;
 
 
     fstream file1;
@@ -65,6 +71,27 @@ int main()
 
         file1.close();
 
+    }
+    else{
+        cout << "Error opening file" << endl;
+    }
+
+    file2.open(booksfile);
+    if(file2.is_open()){
+        while(getline(file2, line)){
+            book filebook;
+            filebook.book::setName(line);
+
+            getline(file2, line);
+            filebook.book::setQuantity(quantity);
+
+            getline(file2, line);
+            filebook.book::setPrice(price);
+
+            books_vector.push_back(filebook);
+            
+        }
+        file2.close();
     }
     else{
         cout << "Error opening file" << endl;
@@ -105,8 +132,12 @@ int main()
                 getline(cin, password);
 
                 if(password == account_vector[i].getPassword()) {
-
+                    carts.setName(fullname);
+                    
+                    system("clear");
                     loginmenu:
+
+                    
 
                     cout << "Welcome " << fullname << "!" << endl;
                     cout << "Please select from the following options:" << endl << endl;
@@ -118,14 +149,133 @@ int main()
 
                     while(looper == 1){
                     cin >> login_option;
-                    //system("clear");
                         
                         if(login_option == 1){
                           //TAKE USER TO SHOP SUBMENU
+
+                            system("clear");
+                            shopmenu:
+
+                            while(1){
+                            
+                            int book_option;
+                            int book_quantity;
+                            
+                            cout << "---BOOK SHOP CATALOG ---" << endl << endl;
+
+                            for (int i = 0; i < books_vector.size(); i++){
+                                cout << i + 1 << ". ";
+                                books_vector[i].viewBook();
+                            }
+
+                            //SHOP MENU OPTIONS
+                            cout << "1. Add book to cart." << endl;
+                            cout << "2. Go back to login menu." << endl;
+                            
+                            cin >> shop_option;
+
+                            if(shop_option == 1) {
+                                bookoptionmenu:
+                                cout << "Please select the number of the book that you want: ";
+                                cin >> book_option;
+
+                                if(book_option > 0 && book_option<= books_vector.size()) {
+                                    cout << "You chose: " << books_vector[book_option-1].getName() << endl;
+                                    cout << "Please enter how many of these books you'd like: ";
+
+                                    cin >> book_quantity;
+
+                                    while(1) {
+                                        if(book_quantity > books_vector[book_option-1].getQuantity()){
+                                            cout << endl << "Sorry, we don't have that many  of that book for sale, please try again: ";
+                                            cin >> book_quantity;
+                                        }
+                                        else{
+                                            break;
+                                        }
+                                    }
+                                    book book_to_cart;
+                                    book_to_cart.setName(books_vector[book_option-1].getName());
+                                    book_to_cart.setQuantity(book_quantity);
+                                    book_to_cart.setPrice(books_vector[book_option-1].getPrice());
+
+                                    carts.addBook(book_to_cart);
+                                    cart_size = cart_size + 1;
+
+                                    cout << "Book was added to cart!" << endl;
+                                    goto shopmenu;
+                                }
+                                else{
+                                    cout << "You entered an invalid input. Either that isn't a valid number, or not a number. " << endl;
+                                    goto bookoptionmenu;
+                                }
+                            }
+
+                            else if(shop_option == 2){
+                                system("clear");
+                                goto loginmenu;
+                            }
                         }
+                    }
 
                         else if(login_option == 2){
                           //TAKE USER TO THEIR CART
+
+                            cartmenu:
+                            system("clear");
+                            while(1){
+                                int cart_option;
+                                cout << "---USER CART---" << endl << endl;
+                                carts.viewCart();
+                                cout << "1. Checkout all items" << endl;
+                                cout << "2. Remove item from cart" << endl;
+                                cout << "3. Go back to login menu" << endl;
+                                cin >> cart_option;
+
+                                if (cart_option == 1){
+                                    //CHECKOUT
+                                    for(int loop1 = 0; loop1 < cart_size; loop1++) {
+                                        for(int loop2 = 0; loop2 < books_vector.size(); loop2++) {
+                                            if(carts.getBookname(loop1) == books_vector[loop2].getName()){
+                                                books_vector[loop2].decreaseQuantity(carts.getBookquantity(loop1));
+                                        }
+                                            else{
+                                                cout << "There was an issue checking out. " << endl << endl;\
+                                                goto cartmenu;
+                                        }
+                                    }
+                                }
+                                    carts.checkout();
+                                    cart_size = 0;
+                                    system("clear");
+                                    cout << "Checkout was successful!" << endl << endl;
+                                    break;
+                            }
+
+                                else if(cart_option == 2){
+                                    //REMOVE BOOK FROM CART
+                                    
+                                    int book_to_remove;
+                                    cout << "Please enter the number of the book you'd like to remove: ";
+                                    cin >> book_to_remove;
+                                    carts.removeBook(book_to_remove);
+                                    cart_size = cart_size - 1;
+
+                                    system("clear");
+                                    cout << "Book was removed from cart!" << endl;
+                                    goto cartmenu;
+                                    
+                                }
+                                else if (cart_option == 3){
+                                    //goes back to login menu.
+                                    system("clear");
+                                    goto loginmenu;
+                                }
+                                else{
+                                    cout << "Invalid input, please try again." << endl;
+                                    goto cartmenu;
+                                }
+                            }
                         }
 
                         else if(login_option == 3){
@@ -185,7 +335,7 @@ int main()
                             //view acc history
                             else if(account_option == 6){
                                 system("clear");
-                                //view history somehow
+                                carts.viewHistory();
                                 
                             }
 
@@ -194,13 +344,18 @@ int main()
                                 goto loginmenu;
                             
                             }
+                            else{
+                                cout << "Invalid input. Please try again." << endl << endl;
                             }
+                        
+                        }
                         }   
                           
                         
                         else if(login_option == 4){
                           //LOG USER OUT
                           cout << "Logging out..." << endl << endl;
+                          carts.clearCart();
                           goto beginningmenu;
                         }
                         else{
@@ -215,6 +370,7 @@ int main()
                   
             }
             else{
+                system("clear");
               cout << "Not a registered name. Try making an account first! (or typing correctly)" << endl << endl;
             }
         }
