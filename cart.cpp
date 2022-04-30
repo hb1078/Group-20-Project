@@ -1,9 +1,4 @@
-#include "cart.h> 
-#include <iostream>
-#include <string>
-
-
-using namespace std;
+#include "cart.h"
 
 void cart::setTotal(double totalIN)
 {
