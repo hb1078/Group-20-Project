@@ -21,9 +21,9 @@ class book
     void setPrice(double priceIn);
     void setQuantity(int quantityIn);
 
-    bool getName(string& nameOut); //setting these to bool and passing the values as reference allows for a false return in case of failure
-    bool getPrice(double& priceOut);
-    bool getQuantity(int& quantity);
+    string getName();
+    double getPrice();
+    int getQuantity();
 
     bool decreaseQuantity(int amount); //decided this should be bool so it can fail if it causes quantity to be negative
 };

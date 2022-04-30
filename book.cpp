@@ -22,40 +22,19 @@ void book::setQuantity(int quantityIn)
     quantity = quantityIn;
 }
 
-bool book::getName(string& nameOut)
+string book::getName()
 {
-    if (bookName == "") //all my getters follow the same format
-        return false; //that format being a check for an empty variable leading to a false return if the variable is indeed empty
-    
-    else //followed by an else that does the actual "getting" and returns true, as long as the variable is storing an actual name/price/quantity
-    {
-        nameOut = bookName;
-        return true;
-    }
+    return bookName;
 }
 
-bool book::getPrice(double& priceOut)
+double book::getPrice()
 {
-    if (price == 0.0)
-        return false;
-    
-    else
-    {
-        priceOut = price;
-        return true;
-    }
+    return price
 }
 
-bool book::getQuantity(int& quantityOut)
+int book::getQuantity()
 {
-    if (quantity == 0)
-        return false;
-    
-    else
-    {
-        quantityOut = quantity;
-        return true;
-    }
+    return quantity;
 }
 
 bool book::decreaseQuantity(int amount) //does as specified in the design document
