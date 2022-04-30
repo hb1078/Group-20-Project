@@ -3,27 +3,28 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include "book.h"
 
 using namespace std;
 
 class cart
 {
     private:
-   // vector <Book> bookList;
+    vector <book> bookList;
     string userName;
-    double totalprice;
+    double totalPrice;
    
     public:
-    void setTotal(double total);
-    double getTotal(double total);
+    void setTotal(double totalIn);
+    double getTotal();
 
-    string getUsername(string username);
-    string getBookname(string bookname);
-    double getPrice(double Price);
+    string getUsername();
+    //string getBookname(string bookname); not sure how to specificy which book to get so this is commented out for now
+    //double getPrice(double Price); ^^^^^
 
     //adds and removes books
-    void addBook(string Book);
-    void removeBook(string Book);
+    void addBook(const book& bookIn);
+    bool removeBook(const book& bookIn); //needs to be bool in case it fails
 
     //Cart functions
     void viewCart();
