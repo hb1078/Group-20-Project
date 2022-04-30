@@ -21,9 +21,9 @@ class book
     void setPrice(double priceIn);
     void setQuantity(int quantityIn);
 
-    string getName();
-    double getPrice();
-    int getQuantity();
+    const string getName(); //const better here because it doesn't modify values
+    const double getPrice();
+    const int getQuantity();
 
     bool decreaseQuantity(int amount); //decided this should be bool so it can fail if it causes quantity to be negative
 };

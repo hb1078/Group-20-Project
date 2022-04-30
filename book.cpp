@@ -22,17 +22,17 @@ void book::setQuantity(int quantityIn)
     quantity = quantityIn;
 }
 
-string book::getName()
+const string book::getName()
 {
     return bookName;
 }
 
-double book::getPrice()
+const double book::getPrice()
 {
-    return price
+    return price;
 }
 
-int book::getQuantity()
+const int book::getQuantity()
 {
     return quantity;
 }

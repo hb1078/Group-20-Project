@@ -23,8 +23,8 @@ class cart
     //double getPrice(double Price); ^^^^^
 
     //adds and removes books
-    void addBook(const book& bookIn);
-    bool removeBook(const book& bookIn); //needs to be bool in case it fails
+    void addBook(book bookIn);
+    bool removeBook(book bookIn); //needs to be bool in case it fails
 
     //Cart functions
     void viewCart();
@@ -32,6 +32,7 @@ class cart
     void viewTotal();
     void checkout();
     void addHistory();
+    void viewHistory();
     void deleteHistory();
 
 };
