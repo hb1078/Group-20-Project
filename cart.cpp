@@ -54,6 +54,7 @@ void cart::viewCart()
 void cart::clearCart(){
     if(books_vector.size() > 0){
         books_vector.clear();
+        totalprice = 0;
     }
 }
 
