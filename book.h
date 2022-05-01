@@ -20,15 +20,15 @@ class book
     book(string bookname, double price, int quantity) : bookname(bookname), price(price), quantity(quantity) {}
     ~book();
 
-    void setName(string bookname); 
-    void setPrice(double price);
-    void setQuantity(int quantity);
+    void setName(string booknameIn); 
+    void setPrice(double priceIn);
+    void setQuantity(int quantityIn);
 
     string getName(); 
     double getPrice();
     int getQuantity();
     void viewBook();
 
-    void decreaseQuantity(int amount);
+    bool decreaseQuantity(int amount); //bool type allows this to return false in case of failure
 };
 
