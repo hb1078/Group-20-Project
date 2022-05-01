@@ -18,7 +18,7 @@ class cart : public book
     vector<book> books_vector;
    
     public:
-    void setTotal(double total);
+    void setTotal(double totalPriceIn);
     double getTotal();
 
     string getFullname();

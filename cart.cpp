@@ -1,8 +1,8 @@
 #include "cart.h"
 
-void cart::setTotal(double totalprice)
+void cart::setTotal(double totalPriceIn)
 {
-    this->totalprice = totalprice;
+    totalprice = totalPriceIn;
 }
 
 double cart::getTotal()
