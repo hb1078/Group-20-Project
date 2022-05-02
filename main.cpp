@@ -105,7 +105,7 @@ int main()
     beginningmenu:
     
     cout << "Welcome to the Group 20 Bookstore!" << endl;
-    cout << "Please select from the following options:" << endl << endl;
+    cout << "Please select from the following options (select 1-3):" << endl << endl;
 
     cout << "1. Login" << endl;
     cout << "2. Create Account" << endl;
