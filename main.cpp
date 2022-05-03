@@ -36,11 +36,6 @@ int main()
     string shippinginfo;
     string paymentinfo;
 
-    string admin_fullname; //Temp
-    string admin_password; //Temp
-    string admin_shipping; //Temp
-    string admin_payment;  //Temp
-
     string temppass;
     string tempshippinginfo;
     string temppaymentinfo;
@@ -49,7 +44,7 @@ int main()
     string booksfile;
     string adminfile;
 
-    vector<admin> admin_vector; //Temp
+    vector<admin> admin_vector; 
   
     vector<accounts> account_vector;
     vector<book> books_vector;
@@ -117,7 +112,7 @@ int main()
       {
         cout << "Error opening file" << endl;
       }
-  
+
     //main menu
 
     while(1)
@@ -434,104 +429,24 @@ int main()
 
             cout << "\n--Administrative Control Panel--\n" << endl;
 
-            cout << "1. Manage Account" << endl;
-            cout << "2. Manage User's Account" << endl;
-            cout << "3. See Admin Info" << endl;
-            cout << "4. Add inventory stock" << endl;
-            cout << "5. Adjust prices on inventory" << endl;
-            cout << "6. Save Changes" << endl;
-            cout << "7. Log out" << endl;
+            cout << "1. Remove a user's account" << endl;
+            cout << "2. Add inventory stock" << endl;
+            cout << "3. Adjust prices on inventory" << endl;
+            cout << "4. Save Changes" << endl;
+            cout << "5. Log out" << endl;
 
             while (looper == 1)
             {
                 cin >> admin_option;
                 //system("clear");
-
                 if (admin_option == "1")
                 {
-                    //Manage Account
-                    cout << "Test 1" << endl;
-                }
-
-                else if (admin_option == "2")
-                {
                     //Manage Other User's account
-                  cout << "Would you like to edit or remove a user account?" << endl;
-                  cout<< "1.Edit \n2.Remove" << endl;
+                  cout << "Would you like to remove a user account?" << endl;
+                  cout<< "1.Yes \n2.No" << endl;
                   cin >> admin_submenu;
+                  
                   if(admin_submenu == "1")
-                  {
-                  int editSelect;
-                  int editChoice;
-                  string editChanges;
-                    
-                    for(int i = 0; i < account_vector.size(); i++)
-                      {
-                        cout << i + 1 << ". "<< "Full Name: " << account_vector[i].getFullName() << endl;
-                        cout << "    Password: " << account_vector[i].getPassword() << endl;
-                        cout << "    Shipping: " << account_vector[i].getShippingInfo() << endl;
-                        cout << "     Payment: " << account_vector[i].getPaymentInfo() << endl << "\n";
-                      }
-                        cout << "Which user would you like to edit?" << endl;
-                        cin >> editSelect;
-                        cout << "\n";
-
-                        cout << "1. Change FullName" << endl;
-                        cout << "2. Change Password" << endl;
-                        cout << "3. Change Shipping Information" << endl;
-                        cout << "4. Change Payment Information\n" << endl;
-                        cout << "What would you like to edit?" << endl;
-                        cin >> editChoice;
-
-                        if(editChoice == 1)
-                        { 
-                          cout << "\nPlease enter new Full name: ";
-                          cin >> editChanges;
-
-                          if(0 < editSelect <= account_vector.size())
-                        {
-                          account_vector[editSelect - 1].setFullName(editChanges);
-                          cout << "Successfully Changed!\n" << endl;
-                          goto adminmenu;
-                        }
-                        else if(editChoice == 2)
-                        {
-                          cout << "\nPlease enter new Password: ";
-                          cin >> editChanges;
-
-                          if(0 < editSelect <= account_vector.size())
-                        {
-                          account_vector[editSelect - 1].setPassword(editChanges);
-                          cout << "Successfully Changed!\n" << endl;
-                          goto adminmenu;
-                        }
-                        }
-                        else if(editChoice == 3)
-                        {
-                          cout << "\nPlease enter new Shipping Information: ";
-                          cin >> editChanges;
-
-                          if(0 < editSelect <= account_vector.size())
-                        {
-                          account_vector[editSelect - 1].setShippingInfo(editChanges);
-                          cout << "Successfully Changed!\n" << endl;
-                          goto adminmenu;
-                        }
-                        else if(editChoice == 4)
-                        {
-                          cout << "\nPlease enter new Payment Information: ";
-                          cin >> editChanges;
-
-                          if(0 < editSelect <= account_vector.size())
-                        {
-                          account_vector[editSelect - 1].setPaymentInfo(editChanges);
-                          cout << "Successfully Changed!\n" << endl;
-                          goto adminmenu;
-                        }
-                        }
-                        }
-                  }
-                  else if(admin_submenu == "2")
                   {
                     int remove;
                     
@@ -555,17 +470,18 @@ int main()
                         cout << "Not a valid option try again" << endl;
                       }
                   
-                  //else if (admin_submenu != ("1","2"))
-                 // {
-                  //  cout << "Thats not a valid selection" << endl;
-                   // goto adminmenu;
-                  //}
+                  else if (admin_submenu != ("1", "2"))
+                  {
+                    cout << "Thats not a valid selection" << endl;
+                    goto adminmenu;
+                  }
+                  else if(admin_submenu == "2")
+                  {
+                    system("clear");
+                    goto adminmenu;
+                  }
                 }
-                else if(admin_option == "3")
-                {
-                  
-                }
-                else if(admin_option == "4")
+                else if(admin_option == "2")
                 {
                   int quantitySelect;
                   int quantityChange;
@@ -591,7 +507,7 @@ int main()
                   cout << "Change successful!\n" << endl;
                   goto adminmenu;
                 }
-                else if(admin_option == "5")
+                else if(admin_option == "3")
                 {
                   int priceSelect;
                   int priceChange;
@@ -617,7 +533,7 @@ int main()
                   cout << "Change successful!\n" << endl;
                   goto adminmenu;
                 }
-                else if(admin_option == "6")
+                else if(admin_option == "4")
                 {
                   ofstream infile;
                   infile.open(accountsfile);
@@ -651,7 +567,7 @@ int main()
             }
         }
       }
-        }
+    
     //exits program
     else if(user_input == 3)
     {
