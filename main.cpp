@@ -26,9 +26,10 @@ int main()
     int quantity = 0;
     double price = 0.0;
 
-    string admin_option; //Temp
-    string admin_submenu; //Temp
-    int manage_acc; //Temp
+    string admin_fullname;
+    string admin_option;
+    string admin_submenu;
+    int manage_acc; 
   
     string line;
     string fullname;
@@ -47,7 +48,7 @@ int main()
     vector<admin> admin_vector; 
   
     vector<accounts> account_vector;
-    vector<Book> books_vector;
+    vector<book> books_vector;
     cart carts;
 
     ifstream infile;
@@ -56,6 +57,9 @@ int main()
     fstream file2;
     fstream file3;
 
+    string adminuser = "admin";
+    string adminpass = "admin";
+  
     accountsfile = "accounts.txt";
     booksfile = "books.txt";
     adminfile = "admin.txt";
@@ -89,14 +93,51 @@ int main()
         cout << "Error opening file" << endl;
     }
 
-    infile.open(booksfile);
+    file2.open(booksfile);
+  
+    if(file2.is_open()){
+        while(getline(file2, line)){
+            book filebook;
+            filebook.book::setName(line);
 
-    while(infile >> line >> quantity >> price)
+            getline(file2, line);
+            filebook.book::setQuantity(quantity);
+
+            getline(file2, line);
+            filebook.book::setPrice(price);
+
+            books_vector.push_back(filebook);
+            
+        }
+        file2.close();
+      }
+      
+      else
       {
-        Book books(line, quantity, price);
+        cout << "Error opening file" << endl;
       }
 
-    infile.close();
+/*file3.open(adminfile);
+  
+    if(file3.is_open()){
+        while(getline(file3, line)){
+            admin fileadmin;
+            fileadmin.admin::setAdminFullName(line);
+
+            getline(file3, line);
+            fileadmin.admin::setAdminPassword(line);
+
+            admin_vector.push_back(fileadmin);
+            
+        }
+        file3.close();
+      }
+      
+      else
+      {
+        cout << "Error opening file" << endl;
+      }
+  */
 
     //main menu
 
@@ -404,13 +445,37 @@ int main()
 
       else if(user_input == 4)
       {
-        /*system("clear");
-        cout << "---Admin Login---" << endl << endl;
-        cout << "Please enter your admin login: ";
-        getline(cin >> ws, admin_fullname);
-        for (int i = 0; i < admin_vector.size(); i++) */
+
+        adminlogin:
+       system("clear");
+        cout << "---Administrative Login---" << endl << endl;
+        cout << "Please enter your admin ID: ";
+        getline(cin, admin_fullname);
+        
+        if(admin_fullname == adminuser)
         {
-        adminmenu:
+          cout << "Please enter admin password: " << endl;
+          cin >> password;
+           if(password == adminpass)
+           {
+             system("clear");
+             goto adminmenu;
+           }
+          else
+           {
+             system("clear");
+          cout << "That is the wrong password" << endl;
+          goto adminlogin;
+           }
+        }
+        else
+        {
+          system("clear");
+          cout << "That is the wrong admin ID" << endl;
+          goto adminlogin;
+        }
+        
+           adminmenu:
 
             cout << "\n--Administrative Control Panel--\n" << endl;
 
@@ -423,13 +488,14 @@ int main()
             while (looper == 1)
             {
                 cin >> admin_option;
-                //system("clear");
+                system("clear");
                 if (admin_option == "1")
                 {
                     //Manage Other User's account
                   cout << "Would you like to remove a user account?" << endl;
                   cout<< "1.Yes \n2.No" << endl;
                   cin >> admin_submenu;
+                  system("clear");
                   
                   if(admin_submenu == "1")
                   {
@@ -444,7 +510,8 @@ int main()
                       }
                         cout << "Which user would you like to remove?" << endl;
                         cin >> remove;
-
+                    system("clear");
+                    
                         if(0 < remove <= account_vector.size())
                         {
                           account_vector.erase(account_vector.begin() + remove -1);
@@ -457,6 +524,7 @@ int main()
                   
                   else if (admin_submenu != ("1", "2"))
                   {
+                    system("clear");
                     cout << "Thats not a valid selection" << endl;
                     goto adminmenu;
                   }
@@ -483,8 +551,9 @@ int main()
                   cout << "How what would you like to change the quantity to?" << endl;
                   cin >> quantityChange;
                   cout << "\n";
-                  
 
+                  system("clear");
+                  
                   if(0 < quantitySelect <= books_vector.size())
                   {
                     books_vector[quantitySelect - 1].setQuantity(quantityChange);
@@ -515,6 +584,7 @@ int main()
                   {
                     books_vector[priceSelect - 1].setPrice(priceChange);
                   }
+                  system("clear");
                   cout << "Change successful!\n" << endl;
                   goto adminmenu;
                 }
@@ -540,16 +610,18 @@ int main()
                   cout <<"\n Saved! \n" << endl;
                   goto adminmenu;
                 }
-                else if(admin_option == "7")
+                else if(admin_option == "5")
                 {
+                  system("clear");
                   goto beginningmenu;
                 }
-                else if(admin_option != ("1", "2", "3", "4", "5", "6", "7"))
-                {
+                else if(admin_option != ("1", "2", "3", "4", "5"))
+                {                  
                   cout << "Thats not a valid option." << endl; 
                   goto adminmenu;
                 }
-            }
+              
+            
         }
       }
     
