@@ -47,7 +47,7 @@ int main()
     vector<admin> admin_vector; 
   
     vector<accounts> account_vector;
-    vector<book> books_vector;
+    vector<Book> books_vector;
     cart carts;
 
     ifstream infile;
@@ -89,29 +89,14 @@ int main()
         cout << "Error opening file" << endl;
     }
 
-    file2.open(booksfile);
-  
-    if(file2.is_open()){
-        while(getline(file2, line)){
-            book filebook;
-            filebook.book::setName(line);
+    infile.open(booksfile);
 
-            getline(file2, line);
-            filebook.book::setQuantity(quantity);
-
-            getline(file2, line);
-            filebook.book::setPrice(price);
-
-            books_vector.push_back(filebook);
-            
-        }
-        file2.close();
-      }
-      
-      else
+    while(infile >> line >> quantity >> price)
       {
-        cout << "Error opening file" << endl;
+        Book books(line, quantity, price);
       }
+
+    infile.close();
 
     //main menu
 
