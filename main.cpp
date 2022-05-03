@@ -11,7 +11,9 @@
 //#include "cart.h"
 //#include "inventory.h"
 
-using namespace std;
+using std::cin;
+using std::getline;
+using std::ws;
 
 int main()
 {

@@ -6,7 +6,9 @@
 
 #include "book.h"
 
-using namespace std;
+using std::vector;
+using std::fstream;
+using std::ofstream;
 
 class cart : public book
 {

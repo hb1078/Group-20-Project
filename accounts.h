@@ -3,7 +3,9 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
+using std::cout;
+using std::string;
+using std::endl;
 
 class accounts
 {
