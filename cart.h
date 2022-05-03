@@ -144,7 +144,7 @@ void cart::viewHistory() {
 
     viewhistoryfile.open(account + " history.txt", ofstream::in);
 
-    cout << "---HISTORY OF " << account << "---" << endl;
+    cout << "---HISTORY" << account << "---" << endl;
 
     if(viewhistoryfile.is_open()) {
         while(getline(viewhistoryfile, holder)){

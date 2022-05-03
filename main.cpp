@@ -22,8 +22,8 @@ int main()
     int shop_option;
     int cart_size;
     int looper = 1;
-    int quantity = 0;
-    double price = 0.0;
+    int quantity = 10;
+    double price = 15.99;
 
     string line;
     string fullname;
@@ -222,7 +222,7 @@ int main()
                           //TAKE USER TO THEIR CART
 
                             cartmenu:
-                            system("clear");
+
                             while(1){
                                 int cart_option;
                                 cout << "---USER CART---" << endl << endl;
@@ -239,17 +239,14 @@ int main()
                                             if(carts.getBookname(loop1) == books_vector[loop2].getName()){
                                                 books_vector[loop2].decreaseQuantity(carts.getBookquantity(loop1));
                                         }
-                                            else{
-                                                cout << "There was an issue checking out. " << endl << endl;\
-                                                goto cartmenu;
-                                        }
+
                                     }
                                 }
                                     carts.checkout();
                                     cart_size = 0;
                                     system("clear");
                                     cout << "Checkout was successful!" << endl << endl;
-                                    break;
+                                    goto loginmenu;
                             }
 
                                 else if(cart_option == 2){
