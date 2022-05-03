@@ -288,6 +288,7 @@ int main()
                             cout << "5. Delete Account" << endl;
                             cout << "6. View Order History" << endl;
                             cout << "7. Leave Account Menu" << endl;
+                            cout << "8. Delete Order History" << endl;
 
                             cin >> account_option;
 
@@ -341,6 +342,13 @@ int main()
                                 goto loginmenu;
                             
                             }
+
+                            //delete order history
+                            else if(account_option == 8){
+                                system("clear");
+                                carts.deleteHistory();
+                            }
+                            
                             else{
                                 cout << "Invalid input. Please try again." << endl << endl;
                             }
