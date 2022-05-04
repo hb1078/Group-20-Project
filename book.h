@@ -71,7 +71,7 @@ int book::getQuantity()
 }
 
 void book::viewBook(){
-    cout << " Name: " << bookname << endl << "Quantity: " << quantity << endl << "Price: " << price << endl << endl;
+    cout << " Name: " << bookname << endl << "Quantity: " << quantity << endl << "Price: $" << price << endl << endl;
 }
 
 void book::decreaseQuantity(int amount) //does as specified in the design document
